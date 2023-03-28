@@ -6,8 +6,18 @@ O progarama consiste em um pequeno projeto "fullstack" de login e cadastro utili
   
   Para executar o servidor do frontend, basta rodar o arquivo `server.py` com o comando: `waitress-serve --listen=127.0.0.1:5001 server:app` acessa o cadastro, `waitress-serve --listen=127.0.0.1:5002 server:app_login` acessa o login. 
   
-  OBS: os arquivos: `index.html`, `login.html` são executaveis em portas diferentes, no caso do código, foi habilitado as portas: 5001, 5002 pelo CORS do backend.  
+  OBS: os arquivos: `index.html`, `login.html` são executaveis em portas diferentes, no caso do código, foi habilitado as portas: 5001, 5002 pelo CORS do backend.
 
+## Tecnologias utilizadas
+
+    - Python
+    - FastAPI
+    - SqlAlchemy
+    - MySql
+    - JavaScript
+    - AJAX
+    - HMTL
+    - CSS
 
 ## Folder banckend
 - File controller.py:
