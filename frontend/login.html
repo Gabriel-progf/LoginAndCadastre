@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <title>Login</title>
+
+  <style>
+    .str_input{
+      margin-bottom: 2px;
+      margin-right: 135px;
+      
+
+    }
+    .input_value{
+      margin-top: 2px;
+      border-radius: 5px;
+      
+    }
+    
+    #btn{
+      margin-top: 10px;
+      margin-right: 100px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  
+  <script>
+    
+    function login(){
+
+      let usuario = document.getElementById('usuario').value;
+      let senha = document.getElementById('senha').value;
+      let linha = document.getElementById("linha")
+      urle = "http://127.0.0.1:5000/login?name=" + usuario + "&password=" + senha;
+
+      $.ajax({
+          url: urle,
+          method: 'post',
+
+          success: function(response) {
+
+            switch (response['status']){
+              case 4: return linha.innerHTML = '<div class="alert alert-danger" role="alert">Usuário não cadastrado.</div>'
+              case 5: return linha.innerHTML = '<div class="alert alert-success" role="alert">Login bem sucedido.</div>'
+            }
+    
+          }    
+      })
+      
+     
+    }  
+        
+  </script>
+
+  <div align="center" class="container">
+    <div class="row">
+      <div class="col">
+        <div id="linha">
+
+        </div>
+        <p style="font-size: 50px">Login</p>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p class="str_input" >Nome:</p>
+        <input id="usuario" class="input_value" type="text" placeholder="Digite seu nome">
+        <p class="str_input" >Senha:</p>
+        <input id="senha" class="input_value" type="password" placeholder="Digite sua senha">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button onclick="login()" id="btn" class="btn btn-success btn-lg">Entrar</button>
+      </div>
+    </div> 
+  </div>
+
+</body>
+
+</html>

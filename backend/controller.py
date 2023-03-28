@@ -6,15 +6,25 @@ from dtos import UserDto
 from secrets import token_hex
 from hashlib import sha256
 import uvicorn
-
-
-app = FastAPI()
-
+from fastapi.middleware.cors import CORSMiddleware
 
 def connect_with_schema():
     engine = create_engine(CONN, echo=True)
     Session = sessionmaker(bind=engine)
     return Session()
+
+
+
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://127.0.0.1:5001","http://127.0.0.1:5002"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.post("/cadastre")

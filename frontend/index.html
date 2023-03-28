@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <title>Cadastre-se</title>
+
+  <style>
+    .str_input {
+      margin-bottom: 2px;
+      margin-right: 135px;
+
+
+    }
+
+    .input_value {
+      margin-top: 2px;
+      border-radius: 5px;
+
+    }
+
+    #btn {
+      margin-top: 10px;
+      margin-right: 70px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <script>
+
+    function cadastrarse() {
+
+      const name = document.getElementById('usuario').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('senha').value;
+      const linha = document.getElementById("linha");
+      urle = "http://127.0.0.1:5000/cadastre?name=" + name + "&email=" + email + "&password=" + password;
+
+      $.ajax({
+        url: urle,
+        method: 'post',
+
+        success: function (response) {
+
+          switch (response['status']) {
+            case 0: return linha.innerHTML = '<div class="alert alert-success" role="alert">Cadastrado com sucesso.</div>';
+            case 1: return linha.innerHTML = '<div class="alert alert-danger" role="alert">Senha incorreta.</div>';
+            case 2: return linha.innerHTML = '<div class="alert alert-danger" role="alert">Usuário já existe.</div>';
+            case 3: return linha.innerHTML = '<div class="alert alert-danger" role="alert">Erro interno do sistema.</div>';
+          }
+
+        }
+
+      })
+
+    }
+
+  </script>
+
+  <div align="center" class="container">
+    <div class="row">
+      <div class="col">
+        <div id="linha">
+
+        </div>
+        <p style="font-size: 50px">Cadastre-se</p>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p class="str_input">Nome:</p>
+        <input id="usuario" class="input_value" type="text" placeholder="Digite seu nome">
+        <p class="str_input">E-mail:</p>
+        <input id="email" class="input_value" type="text" placeholder="Digite seu email">
+        <p class="str_input">Senha:</p>
+        <input id="senha" class="input_value" type="password" placeholder="Digite sua senha">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button onclick="cadastrarse()" id="btn" class="btn btn-success btn-lg">Cadastrar </button>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
