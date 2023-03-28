@@ -1,5 +1,5 @@
 def app(amb, start_response):
-    arq = open('index.html','rb')
+    arq = open('cadastre.html','rb')
     data = arq.read()
     status = '202 ok'
     response_headers = [('Content-type','text/html')]
